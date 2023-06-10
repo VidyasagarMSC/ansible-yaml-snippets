@@ -12,29 +12,48 @@ As I explore and learn Ansible, I will be adding the simple and easy to use Ansi
     ansible-playbook list_files.yaml -i hosts.ini --flush-cache  
    ```
    > For verbose output, use `-vvvv` flag in the ansible command
+
    Expected output:
    ```commandline
-    PLAY [List files] *****************************************************************************************************************************************************************************
+    BECOME password: 
 
-    TASK [List files in the current directory] ****************************************************************************************************************************************************
-    changed: [localhost]
-    
+    PLAY [CURL GET and POST requests] *************************************************************************************************************************************************************
+
+    TASK [POST request with JSON and bearer token] ************************************************************************************************************************************************
+    ok: [localhost]
+
+    TASK [Print return information from the previous task] ****************************************************************************************************************************************
+    ok: [localhost] => {
+        "result.json": {
+            "success": "true"
+        }
+    }
+
+    TASK [GET request to download a file] *********************************************************************************************************************************************************
+    ok: [localhost]
+
     TASK [debug] **********************************************************************************************************************************************************************************
     ok: [localhost] => {
-        "output.stdout_lines": [
-            "LICENSE",
-            "README.md",
-            "add_user_to_os.yaml",
-            "ansible.cfg",
-            "curl_requests.yaml",
-            "hosts.ini",
-            "list_files.yaml",
-            "yum_install_dependencies.yaml"
-        ]
+        "result": {
+            "changed": false,
+            "dest": "./filename.txt",
+            "elapsed": 0,
+            "failed": false,
+            "gid": 0,
+            "group": "wheel",
+            "mode": "0644",
+            "msg": "HTTP Error 304: Not Modified",
+            "owner": "root",
+            "size": 10612,
+            "state": "file",
+            "status_code": 304,
+            "uid": 0,
+            "url": "https://reqbin.com/echo"
+        }
     }
-    
+
     PLAY RECAP ************************************************************************************************************************************************************************************
-    localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+    localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
    ```
 3. cURL requests: add `--ask-become-pass` flag prompting for a root user password
    ```commandline
