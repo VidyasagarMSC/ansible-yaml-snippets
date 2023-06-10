@@ -1,3 +1,6 @@
+############################################################################
+# List files in the current directory using the in-built command module
+############################################################################
 ---
 - name: List files
   hosts: machines
@@ -5,6 +8,6 @@
   gather_facts: false
   tasks:
     - name: "List files in the current directory"
-      shell: "ls"
-      register: "output"
-    - debug: var=output.stdout_lines
+      ansible.builtin.command: "ls"
+      register: output # <- Registers the command output.
+      changed_when: output.rc != 0 # <- Uses the return code to define when the task has changed.
