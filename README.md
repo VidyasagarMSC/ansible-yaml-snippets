@@ -8,13 +8,13 @@ As I explore and learn Ansible, I will be adding the simple and easy to use Ansi
 
 1. Install and setup [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 2. Command to run locally on your terminal or command prompt
-   ```commandline
+   ```shell
     ansible-playbook list_files.yaml -i hosts.ini --flush-cache  
    ```
    > For verbose output, use `-vvvv` flag in the ansible command
    
    Expected output:
-   ```commandline
+   ```shell
     PLAY [List files] *****************************************************************************************************************************************************************************
 
     TASK [List files in the current directory] ****************************************************************************************************************************************************
@@ -38,7 +38,7 @@ As I explore and learn Ansible, I will be adding the simple and easy to use Ansi
     localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
    ```
 3. cURL requests: add `--ask-become-pass` flag prompting for a root user password
-   ```commandline
+   ```shell
     ansible-playbook curl_requests.yaml -i hosts.ini --flush-cache --ask-become-pass
    ```
    Expected output:
