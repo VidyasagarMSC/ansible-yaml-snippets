@@ -2,7 +2,7 @@
 
 As I explore and learn Ansible, I will be adding the simple and easy to use Ansible code snippets written in YAML.
 
-> The snippets include generic yaml code for you to understand the Ansible in-built modules and how to use them for your Ansible automation.
+> :construction: The snippets include generic yaml code for you to understand the Ansible in-built modules and how to use them for your Ansible automation. More code snippets to come. So, :star: this repository :blush:
 
 ## Run locally 
 
