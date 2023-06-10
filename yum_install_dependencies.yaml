@@ -1,0 +1,17 @@
+#################################################
+# Install dependencies on Linux (CentOS / RHEL)
+#################################################
+---
+- name: Install dependencies
+  hosts: machines
+  gather_facts: false
+  tasks:
+    - name: Install dependencies using yum
+      # In-built `yum` module to install packages
+      ansible.builtin.yum:
+        name: "{{ item }}"
+        state: present
+      changed_when: false
+      # Loop through the packages list mentioned in the hosts.ini file.
+      with_items:
+        - "{{ packages }}"

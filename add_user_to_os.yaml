@@ -1,0 +1,10 @@
+---
+- name: Add a new user to an Operating system
+  hosts: machines
+  gather_facts: false
+  tasks:
+    - name: Add the user 'new-user' with a specific uid
+      ansible.builtin.user:
+        name: new-user
+        comment: New user
+        uid: 1040

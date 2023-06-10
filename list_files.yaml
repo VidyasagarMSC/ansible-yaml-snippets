@@ -1,0 +1,10 @@
+---
+- name: List files
+  hosts: machines
+  # connection: local
+  gather_facts: false
+  tasks:
+    - name: "List files in the current directory"
+      shell: "ls"
+      register: "output"
+    - debug: var=output.stdout_lines

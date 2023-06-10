@@ -1,0 +1,36 @@
+############################################################################
+# GET and POST requests using in-built get_url and url modules respectively
+# The code shows two ways of using debug to print the results.
+############################################################################
+---
+- name: CURL GET and POST requests
+  hosts: all
+  # connection: local
+  gather_facts: false
+  tasks:
+    - name: POST request with JSON and bearer token
+      ansible.builtin.uri:
+        url: "{{ base_request_url }}/echo/post/json"
+        method: POST
+        body: '{"employee":{ "name":"Sagar", "age":30, "city":"Boston" }}'
+        validate_certs: false
+        headers:
+          Accept: application/json
+          Authorization: "Bearer {token}"
+          Content-Type: application/json
+      register: result
+      changed_when: false
+      become: true
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        var: result.json
+    - name: GET request to download a file
+      ansible.builtin.get_url:
+        url: "{{ base_request_url }}/echo"
+        dest: ./filename.txt
+        validate_certs: false
+        mode: "0644"
+      register: result
+      changed_when: false
+      become: true
+    - debug: var=result
