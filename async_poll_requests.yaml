@@ -1,0 +1,18 @@
+---
+- name: Async and poll requests
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Async and poll for a long running request
+      ansible.builtin.shell: |
+        /bin/sleep 15
+      changed_when: false
+      async: 45
+      poll: 5
+    - name: Pip install packages
+      ansible.builtin.shell: |
+        pip install -r requirements.txt
+      changed_when: false
+      async: 45
+      poll: 5
+      register: result
