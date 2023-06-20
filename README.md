@@ -9,7 +9,7 @@ As I explore and learn Ansible, I will be adding the simple and easy to use Ansi
 1. Install and setup [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 2. Command to run locally on your terminal or command prompt
    ```shell
-    ansible-playbook list_files.yaml -i hosts.ini --flush-cache  
+    ansible-playbook list_files.yml -i hosts.ini --flush-cache  
    ```
    > For verbose output, use `-vvvv` flag in the ansible command
    
@@ -25,12 +25,12 @@ As I explore and learn Ansible, I will be adding the simple and easy to use Ansi
         "output.stdout_lines": [
             "LICENSE",
             "README.md",
-            "add_user_to_os.yaml",
+            "add_user_to_os.yml",
             "ansible.cfg",
-            "curl_requests.yaml",
+            "curl_requests.yml",
             "hosts.ini",
-            "list_files.yaml",
-            "yum_install_dependencies.yaml"
+            "list_files.yml",
+            "yum_install_dependencies.yml"
         ]
     }
     
@@ -39,7 +39,7 @@ As I explore and learn Ansible, I will be adding the simple and easy to use Ansi
    ```
 3. cURL requests: add `--ask-become-pass` flag prompting for a root user password
    ```shell
-    ansible-playbook curl_requests.yaml -i hosts.ini --flush-cache --ask-become-pass
+    ansible-playbook curl_requests.yml -i hosts.ini --flush-cache --ask-become-pass
    ```
    Expected output:
    ```shell
