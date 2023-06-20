@@ -7,12 +7,12 @@
       ansible.builtin.shell: |
         /bin/sleep 15
       changed_when: false
-      async: 45
+      async: "{{ ansible_check_mode | ternary(0, 45) }}"
       poll: 5
     - name: Pip install packages
       ansible.builtin.shell: |
         pip install -r requirements.txt
       changed_when: false
-      async: 45
+      async: "{{ ansible_check_mode | ternary(0, 45) }}"
       poll: 5
       register: result
