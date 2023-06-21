@@ -1,3 +1,4 @@
+# code: language=ansible
 ---
 - name: Async and poll requests
   hosts: all

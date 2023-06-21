@@ -1,3 +1,4 @@
+# code: language=ansible
 ############################################################################
 # GET and POST requests using in-built get_url and url modules respectively
 # The code shows two ways of using debug to print the results.
