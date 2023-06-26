@@ -17,7 +17,7 @@
         validate_certs: false
         headers:
           Accept: application/json
-          Authorization: "Bearer {token}"
+          Authorization: "Bearer token"
           Content-Type: application/json
       register: result
       changed_when: false
@@ -34,4 +34,19 @@
       register: result
       changed_when: false
       become: true
-    - debug: var=result
+    - name: Debug from the previous task
+      ansible.builtin.debug:
+        var: result
+    - name: HTTP PUT request to create a new object
+      ansible.builtin.uri:
+        url: "{{ base_request_url }}/echo/put/json"
+        method: PUT
+        body: '{"Id": 12345,"Customer": "John Smith","Quantity": 1,"Price": 10.00}'
+        headers:
+          Accept: application/json
+          Content-Type: application/json
+          Authorization: "Bearer token"
+        validate_certs: false
+      register: result
+      changed_when: false
+      become: true
