@@ -1,0 +1,12 @@
+---
+- name: Ping test
+  hosts: machines
+  # connection: local
+  gather_facts: false
+  tasks:
+    - name: Test ping
+      ansible.builtin.ping:
+      register: ping_result
+    - name: Print register information from the previous task
+      ansible.builtin.debug:
+        var: ping_result
