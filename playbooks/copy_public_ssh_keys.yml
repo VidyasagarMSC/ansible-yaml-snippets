@@ -1,0 +1,18 @@
+---
+- name: Copy public SSH keys to the remote machines
+  hosts: remote
+  gather_facts: false
+  tasks:
+    - name: File paths for the respective keys
+      delegate_to: localhost
+      ansible.builtin.shell: |
+        cd ../scripts
+        ./get_file_info get_files /User/vmac/Downloads .pub
+      register: file_paths
+      changed_when: false
+    - name: Set up multiple authorized keys
+      ansible.posix.authorized_key:
+        user: root
+        state: present
+        key: "{{ item }}"
+      with_file: "{{ file_paths.stdout.split(' ') }}"
