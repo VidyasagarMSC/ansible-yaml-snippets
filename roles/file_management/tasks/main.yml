@@ -1,0 +1,7 @@
+---
+# tasks file for file_management
+- name: List files in the current directory
+  ansible.builtin.command: ls
+  register: output # <- Registers the command output.
+  # changed_when: outputrc != 0 # <- Uses the return code to define when the task has changed.
+- debug: msg="{{ output.stdout_lines }}"
