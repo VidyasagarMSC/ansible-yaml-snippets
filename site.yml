@@ -1,0 +1,12 @@
+---
+- name: File and OS management
+  hosts: machines
+  gather_facts: false
+  roles:
+    - file_management
+    - role: os_management
+      config_task: add_os_user
+      become: true
+    - role: os_management
+      config_task: change_os_user_passwd
+      become: true
