@@ -1,0 +1,5 @@
+- name: Add the user 'new-user' with a specific uid
+  ansible.builtin.user:
+    name: new-user
+    comment: New user
+    uid: 1040 # <- User ID can be anything

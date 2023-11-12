@@ -1,0 +1,4 @@
+---
+# vars file for os_management
+NEW_PASSWORD: testingansible1234
+USER: new-user

@@ -1,0 +1,8 @@
+---
+# tasks file for os_management
+- name: Add a new user to the Operation system
+  include_tasks: add_os_user.yml
+  when: config_task == "add_os_user"
+- name: Change OS user password
+  include_tasks: change_os_user_passwd.yml
+  when: config_task == "change_os_user_passwd"

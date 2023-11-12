@@ -1,0 +1,4 @@
+- name: Change os user password
+  ansible.builtin.raw: echo -e "{{ NEW_PASSWORD }}\n{{ NEW_PASSWORD }}" | passwd {{ USER }}
+  changed_when: false
+  become: true # <== become root user on Linux to change the passwd for other users
