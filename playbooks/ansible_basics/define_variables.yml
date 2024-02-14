@@ -1,0 +1,29 @@
+# code: language=ansible
+---
+- name: Learn the basics of Ansible
+  hosts: all
+  vars:
+    destination: /usr
+    # Define a list
+    region:
+      - us-south
+      - us-east
+      - eu-de
+    # Define a dictionary
+    credentials:
+      username: vmac
+      port: 22
+  gather_facts: false
+  tasks:
+    - name: Print the different types of variables
+      ansible.builtin.shell: |
+        cd "{{ destination }}"
+        export REGION="{{ region[0] }}"
+        echo $REGION
+        export USERNAME="{{ credentials.username }}"
+        echo $USERNAME
+      changed_when: false
+      register: variables_output
+    - name: Debug destination_output
+      ansible.builtin.debug:
+        msg: "{{ destination_output }}"
