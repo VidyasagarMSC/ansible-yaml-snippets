@@ -13,6 +13,11 @@
     credentials:
       username: vmac
       port: 22
+    # nested dictionary
+    network:
+      eth0:
+        ipv4:
+          address: 10.10.0.30
   gather_facts: false
   tasks:
     - name: Print the different types of variables
@@ -20,10 +25,12 @@
         cd "{{ destination }}"
         export REGION="{{ region[0] }}"
         echo $REGION
-        export USERNAME="{{ credentials.username }}"
+        export USERNAME="{{ credentials["username"] }}"
         echo $USERNAME
+        export PRIVATE_IP="{{ network.eth0.ipv4.address }}"
+        echo $PRIVATE_IP
       changed_when: false
       register: variables_output
     - name: Debug destination_output
       ansible.builtin.debug:
-        msg: "{{ destination_output }}"
+        msg: "{{ variables_output }}"
