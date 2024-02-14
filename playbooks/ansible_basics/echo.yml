@@ -1,0 +1,14 @@
+---
+- name: Run echo and debug the output
+  hosts: all
+  gather_facts: false
+  tasks:
+   - name: Echo the $PATH
+     ansible.builtin.shell: |
+        echo $PATH
+     changed_when: false
+     register: echo_path
+   - name: Debug the echo path
+     ansible.builtin.debug:
+        msg: "{{ echo_path.stdout_lines[0] }}"
+     changed_when: false
